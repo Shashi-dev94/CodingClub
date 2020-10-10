@@ -1,2 +1,10 @@
 #!/bin/bash -x
-echo "Welcome to Employee Wage Computation Program"
+
+randomCheck=$((RANDOM%2))
+if [ $randomCheck -eq 1 ]
+then
+	echo "Emloyee is Present"
+else
+	echo "Employee is Absent"
+fi
+
