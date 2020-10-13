@@ -1,21 +1,25 @@
 #!/bin/bash -x
 
-randomOne=$((RANDOM%2))
-randomTwo=$((RANDOM%2))
-dailyHours=0
+isFullTime=1
+isPartTime=2
 WagePerHour=20
 
-if [ $randomOne -eq 1 -a $randomTwo -eq 1 ]
-then
-	echo "Employee is Fulltime Present"
+randomCheck=$((RANDOM%3))
+case $randomCheck in
+	$isFullTime)
+	echo "Employee is FullTime Present"
 	dailyHours=8
-elif [ $randomOne -eq 1 -o $randomTwo -eq 1 ]
-then
+	;;
+
+	$isPartTime)
 	echo "Employee is PartTime Present"
 	dailyHours=4
-else
-	echo employee is absent
-fi
+	;;
+	*)
+	echo "Employee is Absent"
+	dailyHours=0
+	;;
+esac
 
 dailyWage=$(($dailyHours*$WagePerHour))
-echo $dailyWage
+echo "dailyWage:" $dailyWage
