@@ -3,23 +3,30 @@
 isFullTime=1
 isPartTime=2
 WagePerHour=20
+totalWorkingHours=0
+numbWorkingDays=20
+monthlyWage=0
 
-randomCheck=$((RANDOM%3))
-case $randomCheck in
-	$isFullTime)
-	echo "Employee is FullTime Present"
-	dailyHours=8
-	;;
+for (( day=1; day<=$numbWorkingDays; day++ ))
+do
+	randomCheck=$((RANDOM%3))
+	case $randomCheck in
+		$isFullTime)
+		dailyHours=8
+		;;
 
-	$isPartTime)
-	echo "Employee is PartTime Present"
-	dailyHours=4
-	;;
-	*)
-	echo "Employee is Absent"
-	dailyHours=0
-	;;
-esac
+		$isPartTime)
+		dailyHours=4
+		;;
 
-dailyWage=$(($dailyHours*$WagePerHour))
-echo "dailyWage:" $dailyWage
+		*)
+		dailyHours=0
+		;;
+	esac
+	dailyWage=$(($dailyHours*$WagePerHour))
+	monthlyWage=$(($monthlyWage+$dailyWage))
+	totalWorkingHours=$(($totalWorkingHours+$dailyHours))
+
+done
+	echo "Total Work Hours of Employee: " $totalWorkingHours hrs
+	echo "Monthly Wage of Employee: " $monthlyWage rs
